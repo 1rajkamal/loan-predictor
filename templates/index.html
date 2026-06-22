@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LoanPredict AI — ML-powered instant loan approval prediction. Powered by Gradient Boosting with 90%+ accuracy.">
+  <title>LoanPredict AI — Home</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🏦</text></svg>">
+</head>
+<body>
+
+<!-- ── Navbar ─────────────────────────────────────────────── -->
+<nav class="navbar">
+  <a href="/" class="nav-brand">
+    <span class="brand-icon">🏦</span>
+    LoanPredict <span class="gradient-text">AI</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/" class="active">Home</a></li>
+    <li><a href="/predict">Predict</a></li>
+    <li><a href="/dashboard">Dashboard</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-icon" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">☀️</button>
+    <a href="/predict" class="btn-primary" style="padding:.5rem 1.2rem;font-size:.875rem">
+      Get Started →
+    </a>
+    <button class="btn-icon hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/">🏠 Home</a>
+  <a href="/predict">🔮 Loan Prediction</a>
+  <a href="/dashboard">📊 Dashboard</a>
+  <a href="/about">ℹ️ About</a>
+</div>
+
+<div class="page-wrapper">
+
+  <!-- ── Hero ─────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="container" style="display:flex;align-items:center;gap:4rem;flex-wrap:wrap">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          AI-Powered &bull; Real-Time Predictions
+        </div>
+        <h1>
+          AI Loan Approval<br>
+          <span class="gradient-text">Prediction System</span>
+        </h1>
+        <p>
+          Submit your financial profile and receive an instant, ML-driven loan approval decision
+          with probability scores, risk analysis, and actionable recommendations.
+        </p>
+        <div class="hero-cta">
+          <a href="/predict" class="btn-primary btn-lg">
+            🔮 Predict My Loan
+          </a>
+          <a href="/dashboard" class="btn-secondary btn-lg">
+            📊 View Analytics
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="stat-value" data-target="90" data-suffix="%">0%</div>
+            <div class="stat-label">Model Accuracy</div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-value" data-target="800" data-suffix="+">0+</div>
+            <div class="stat-label">Training Samples</div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-value" data-target="11">0</div>
+            <div class="stat-label">Input Features</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- accuracy ring -->
+      <div class="hero-visual">
+        <div class="accuracy-ring">
+          <svg viewBox="0 0 300 300">
+            <defs>
+              <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#4f8ef7"/>
+                <stop offset="100%" stop-color="#a855f7"/>
+              </linearGradient>
+            </defs>
+            <circle class="ring-track" cx="150" cy="150" r="130"/>
+            <circle class="ring-progress" cx="150" cy="150" r="130"/>
+          </svg>
+          <div class="ring-label">
+            <span class="pct" data-target="90" data-suffix="%">0%</span>
+            <span class="pct-sub">Model Accuracy</span>
+          </div>
+          <div class="ring-cards">
+            <div class="ring-card-item">✅ Gradient Boosting</div>
+            <div class="ring-card-item">⚡ Instant Results</div>
+            <div class="ring-card-item">🔒 Secure &amp; Private</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features ─────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-4 reveal">
+        <div class="section-label">Features</div>
+        <h2 style="font-size:clamp(1.6rem,4vw,2.4rem)">
+          Everything you need for <span class="gradient-text">smart lending</span>
+        </h2>
+        <p style="color:var(--text-secondary);max-width:540px;margin:.75rem auto 0">
+          Our ML pipeline combines 11 financial features to deliver accurate, explainable loan decisions in milliseconds.
+        </p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card glass-card reveal">
+          <div class="feature-icon fi-blue">🤖</div>
+          <h3>Gradient Boosting Model</h3>
+          <p>Trained on real-world loan data using scikit-learn's GradientBoostingClassifier for high-precision decisions.</p>
+        </div>
+        <div class="feature-card glass-card reveal">
+          <div class="feature-icon fi-purple">📊</div>
+          <h3>Risk Assessment</h3>
+          <p>Classifies every application into Low, Medium, or High risk tiers with calibrated confidence scores.</p>
+        </div>
+        <div class="feature-card glass-card reveal">
+          <div class="feature-icon fi-cyan">⚡</div>
+          <h3>Real-Time Prediction</h3>
+          <p>Flask REST API delivers predictions in under 200 ms — no waiting, no batch processing.</p>
+        </div>
+        <div class="feature-card glass-card reveal">
+          <div class="feature-icon fi-green">💡</div>
+          <h3>Smart Recommendations</h3>
+          <p>Personalized, actionable tips help applicants improve their financial profile and reapply confidently.</p>
+        </div>
+        <div class="feature-card glass-card reveal">
+          <div class="feature-icon fi-purple">📈</div>
+          <h3>Analytics Dashboard</h3>
+          <p>Interactive Plotly charts reveal approval trends, income distributions, and credit history impact.</p>
+        </div>
+        <div class="feature-card glass-card reveal">
+          <div class="feature-icon fi-blue">📄</div>
+          <h3>PDF Report Export</h3>
+          <p>One-click printable prediction reports with full breakdown — shareable with financial advisors.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Stats ─────────────────────────────────────────────── -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="glass-card" style="padding:2.5rem">
+        <div class="stats-row">
+          <div class="stat-card reveal">
+            <div class="stat-num" data-target="90" data-suffix="%">0%</div>
+            <div class="stat-desc">Prediction Accuracy</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-num" data-target="200" data-suffix="ms">0ms</div>
+            <div class="stat-desc">Avg Response Time</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-num" data-target="11">0</div>
+            <div class="stat-desc">Feature Inputs</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-num" data-target="800" data-suffix="+">0+</div>
+            <div class="stat-desc">Training Samples</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why choose ────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-4 reveal">
+        <div class="section-label">Why Us</div>
+        <h2 style="font-size:clamp(1.6rem,4vw,2.4rem)">
+          Why choose <span class="gradient-text">LoanPredict AI</span>?
+        </h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-item glass-card reveal">
+          <div class="why-num">1</div>
+          <div>
+            <h4>Explainable AI</h4>
+            <p>Every decision comes with clear reasoning — not a black box.</p>
+          </div>
+        </div>
+        <div class="why-item glass-card reveal">
+          <div class="why-num">2</div>
+          <div>
+            <h4>No Hidden Bias</h4>
+            <p>Model trained on balanced, diverse financial data.</p>
+          </div>
+        </div>
+        <div class="why-item glass-card reveal">
+          <div class="why-num">3</div>
+          <div>
+            <h4>Portfolio Ready</h4>
+            <p>Clean architecture, REST API, and deployment configuration included.</p>
+          </div>
+        </div>
+        <div class="why-item glass-card reveal">
+          <div class="why-num">4</div>
+          <div>
+            <h4>Open Source Stack</h4>
+            <p>Flask + scikit-learn + Plotly — zero licensing costs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA banner ─────────────────────────────────────────── -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="glass-card reveal" style="padding:3rem;text-align:center;background:linear-gradient(135deg,rgba(79,142,247,0.1),rgba(168,85,247,0.1))">
+        <h2 style="font-size:clamp(1.5rem,4vw,2.2rem);margin-bottom:0.75rem">
+          Ready to check your <span class="gradient-text">loan eligibility</span>?
+        </h2>
+        <p style="color:var(--text-secondary);margin-bottom:2rem;max-width:480px;margin-left:auto;margin-right:auto">
+          Fill out a quick form and get your AI-powered loan decision in seconds.
+        </p>
+        <a href="/predict" class="btn-primary btn-lg">Start Prediction →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>🏦 LoanPredict <span class="gradient-text">AI</span></h3>
+          <p>ML-powered loan approval prediction for the modern fintech era.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" title="GitHub">📁</a>
+            <a href="#" class="social-link" title="LinkedIn">💼</a>
+            <a href="#" class="social-link" title="Twitter">🐦</a>
+            <a href="#" class="social-link" title="Email">✉️</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="/predict">Loan Prediction</a></li>
+            <li><a href="/dashboard">Analytics</a></li>
+            <li><a href="/about">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Tech Stack</h4>
+          <ul>
+            <li><a href="#">Python Flask</a></li>
+            <li><a href="#">scikit-learn</a></li>
+            <li><a href="#">Plotly</a></li>
+            <li><a href="#">Pandas / NumPy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">API Reference</a></li>
+            <li><a href="#">GitHub Repo</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 LoanPredict AI. Built for portfolio & placement purposes.</p>
+        <p style="color:var(--text-muted)">Not financial advice &mdash; for demonstration only.</p>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /page-wrapper -->
+
+<div id="toast-container"></div>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

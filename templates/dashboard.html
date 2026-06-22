@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LoanPredict AI — Analytics Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🏦</text></svg>">
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+</head>
+<body>
+
+<!-- ── Navbar ─────────────────────────────────────────────── -->
+<nav class="navbar">
+  <a href="/" class="nav-brand">
+    <span class="brand-icon">🏦</span>
+    LoanPredict <span class="gradient-text">AI</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/predict">Predict</a></li>
+    <li><a href="/dashboard" class="active">Dashboard</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-icon" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">☀️</button>
+    <button class="btn-icon hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/">🏠 Home</a>
+  <a href="/predict">🔮 Loan Prediction</a>
+  <a href="/dashboard">📊 Dashboard</a>
+  <a href="/about">ℹ️ About</a>
+</div>
+
+<div class="page-wrapper">
+  <div class="predict-hero" style="padding:3rem 0 1.5rem">
+    <div class="container">
+      <div class="hero-badge" style="justify-content:center">
+        <span class="dot"></span>
+        Live Dataset Analytics
+      </div>
+      <h1 style="font-size:clamp(1.6rem,4vw,2.5rem)">
+        Loan <span class="gradient-text">Analytics Dashboard</span>
+      </h1>
+      <p>Explore approval trends, income distributions, and credit history patterns from our training dataset.</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-bottom:5rem">
+
+    <!-- ── KPI Row ──────────────────────────────────────────── -->
+    <div class="kpi-grid mb-4">
+      <div class="kpi-card glass-card reveal">
+        <div class="kpi-icon fi-blue">📊</div>
+        <div class="kpi-value gradient-text" id="kpiTotal" data-target="800" data-suffix="">0</div>
+        <div class="kpi-label">Total Applications</div>
+        <div class="kpi-delta">↑ Training dataset size</div>
+      </div>
+      <div class="kpi-card glass-card reveal">
+        <div class="kpi-icon fi-green">✅</div>
+        <div class="kpi-value" style="color:var(--green)" id="kpiApproved" data-target="540">0</div>
+        <div class="kpi-label">Approved Loans</div>
+        <div class="kpi-delta">↑ Strong approval rate</div>
+      </div>
+      <div class="kpi-card glass-card reveal">
+        <div class="kpi-icon fi-purple">📈</div>
+        <div class="kpi-value" style="color:var(--purple)" id="kpiRate" data-target="67" data-suffix="%" data-decimals="1">0%</div>
+        <div class="kpi-label">Approval Rate</div>
+        <div class="kpi-delta">↑ Above industry avg</div>
+      </div>
+      <div class="kpi-card glass-card reveal">
+        <div class="kpi-icon fi-cyan">💵</div>
+        <div class="kpi-value" style="color:var(--cyan)" id="kpiIncome" data-target="5800" data-prefix="$">$0</div>
+        <div class="kpi-label">Avg Applicant Income</div>
+        <div class="kpi-delta">Monthly average</div>
+      </div>
+      <div class="kpi-card glass-card reveal">
+        <div class="kpi-icon" style="background:rgba(244,114,182,0.15);color:var(--pink)">🏠</div>
+        <div class="kpi-value" style="color:var(--pink)" id="kpiLoan" data-target="146" data-suffix="K" data-prefix="$">$0K</div>
+        <div class="kpi-label">Avg Loan Amount</div>
+        <div class="kpi-delta">Across all applications</div>
+      </div>
+    </div>
+
+    <!-- ── Charts grid ────────────────────────────────────────── -->
+    <div class="charts-grid">
+
+      <!-- Donut: approval distribution -->
+      <div class="chart-card glass-card reveal">
+        <h3>🍩 Approval Distribution</h3>
+        <div id="chartDonut" class="chart-placeholder"></div>
+      </div>
+
+      <!-- Income distribution -->
+      <div class="chart-card glass-card reveal">
+        <h3>💵 Income Distribution by Outcome</h3>
+        <div id="chartIncome" class="chart-placeholder"></div>
+      </div>
+
+      <!-- Credit history impact -->
+      <div class="chart-card glass-card reveal">
+        <h3>💳 Credit History Impact</h3>
+        <div id="chartCredit" class="chart-placeholder"></div>
+      </div>
+
+      <!-- Property area breakdown -->
+      <div class="chart-card glass-card reveal">
+        <h3>📍 Approval by Property Area</h3>
+        <div id="chartArea" class="chart-placeholder"></div>
+      </div>
+
+    </div>
+
+    <!-- ── Feature importance info ──────────────────────────── -->
+    <div class="glass-card mt-4 reveal" style="padding:2rem">
+      <h3 style="margin-bottom:1.5rem;font-size:1rem">🎯 Key Approval Factors</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem">
+        {% set factors = [
+          ("Credit History", 85, "#4f8ef7"),
+          ("Applicant Income", 72, "#a855f7"),
+          ("Loan Amount", 61, "#22d3ee"),
+          ("Property Area", 48, "#34d399"),
+          ("Education", 39, "#f472b6"),
+          ("Marital Status", 28, "#fbbf24"),
+        ] %}
+        {% for name, pct, color in factors %}
+        <div>
+          <div class="d-flex justify-between mb-1" style="font-size:.82rem">
+            <span style="color:var(--text-secondary)">{{ name }}</span>
+            <span style="color:{{ color }};font-weight:600">{{ pct }}%</span>
+          </div>
+          <div class="prob-bar-wrap">
+            <div class="prob-bar-fill" style="width:{{ pct }}%;background:{{ color }};height:6px;position:relative;border-radius:4px;transition:width 1.5s ease"></div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="toast-container"></div>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

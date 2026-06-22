@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LoanPredict AI — About Project</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🏦</text></svg>">
+</head>
+<body>
+
+<!-- ── Navbar ─────────────────────────────────────────────── -->
+<nav class="navbar">
+  <a href="/" class="nav-brand">
+    <span class="brand-icon">🏦</span>
+    LoanPredict <span class="gradient-text">AI</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/predict">Predict</a></li>
+    <li><a href="/dashboard">Dashboard</a></li>
+    <li><a href="/about" class="active">About</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-icon" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">☀️</button>
+    <button class="btn-icon hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="/">🏠 Home</a>
+  <a href="/predict">🔮 Loan Prediction</a>
+  <a href="/dashboard">📊 Dashboard</a>
+  <a href="/about">ℹ️ About</a>
+</div>
+
+<div class="page-wrapper">
+
+  <!-- ── Hero ──────────────────────────────────────────────── -->
+  <div class="about-hero">
+    <div class="orb orb-1" style="width:300px;height:300px;opacity:.15"></div>
+    <div class="container">
+      <div class="hero-badge" style="justify-content:center">
+        <span class="dot"></span>
+        Portfolio & Placement Project
+      </div>
+      <h1>About <span class="gradient-text">LoanPredict AI</span></h1>
+      <p>A full-stack ML web application built to demonstrate real-world application of machine learning in the fintech domain.</p>
+    </div>
+  </div>
+
+  <div class="container" style="max-width:960px;padding-bottom:5rem">
+
+    <!-- ── Project overview ───────────────────────────────── -->
+    <div class="glass-card reveal" style="padding:2rem 2.5rem;margin-bottom:1.5rem">
+      <h2 style="font-size:1.3rem;margin-bottom:1rem">🎯 Project Overview</h2>
+      <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:1rem">
+        LoanPredict AI is a machine learning-powered loan approval prediction system that uses
+        <strong style="color:var(--text-primary)">Gradient Boosting Classification</strong> to assess
+        applicant financial profiles and predict approval likelihood with calibrated confidence scores.
+      </p>
+      <p style="color:var(--text-secondary);line-height:1.8">
+        The system analyzes 11 key features including credit history, income, loan amount, employment status,
+        and property location to deliver instant, explainable predictions through a modern Flask REST API and
+        a premium glassmorphism web interface.
+      </p>
+    </div>
+
+    <!-- ── Tech stack ─────────────────────────────────────── -->
+    <div class="glass-card reveal" style="padding:2rem 2.5rem;margin-bottom:1.5rem">
+      <h2 style="font-size:1.3rem;margin-bottom:1.5rem">🛠️ Tech Stack</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem">
+        <div>
+          <div class="section-label mb-2">Backend</div>
+          <div class="tech-chips">
+            <span class="tech-chip"><span class="chip-icon">🐍</span> Python 3.10+</span>
+            <span class="tech-chip"><span class="chip-icon">⚗️</span> Flask</span>
+            <span class="tech-chip"><span class="chip-icon">🔬</span> scikit-learn</span>
+            <span class="tech-chip"><span class="chip-icon">🐼</span> Pandas</span>
+            <span class="tech-chip"><span class="chip-icon">🔢</span> NumPy</span>
+            <span class="tech-chip"><span class="chip-icon">📦</span> Pickle</span>
+          </div>
+        </div>
+        <div>
+          <div class="section-label mb-2">Frontend</div>
+          <div class="tech-chips">
+            <span class="tech-chip"><span class="chip-icon">🌐</span> HTML5</span>
+            <span class="tech-chip"><span class="chip-icon">🎨</span> CSS3</span>
+            <span class="tech-chip"><span class="chip-icon">⚡</span> Vanilla JS</span>
+            <span class="tech-chip"><span class="chip-icon">📊</span> Plotly.js</span>
+          </div>
+        </div>
+        <div>
+          <div class="section-label mb-2">ML Model</div>
+          <div class="tech-chips">
+            <span class="tech-chip"><span class="chip-icon">🤖</span> Gradient Boosting</span>
+            <span class="tech-chip"><span class="chip-icon">📈</span> 200 Estimators</span>
+            <span class="tech-chip"><span class="chip-icon">🎯</span> 90%+ Accuracy</span>
+            <span class="tech-chip"><span class="chip-icon">🔄</span> 11 Features</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Model features ─────────────────────────────────── -->
+    <div class="glass-card reveal" style="padding:2rem 2.5rem;margin-bottom:1.5rem">
+      <h2 style="font-size:1.3rem;margin-bottom:1.5rem">🧠 Model Features</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.75rem">
+        {% set features = [
+          ("Gender", "Binary demographic feature", "fi-blue"),
+          ("Married", "Marital status indicator", "fi-purple"),
+          ("Dependents", "Number of financial dependents", "fi-cyan"),
+          ("Education", "Graduate vs. non-graduate", "fi-green"),
+          ("Self Employed", "Employment type flag", "fi-blue"),
+          ("Applicant Income", "Monthly gross income ($)", "fi-purple"),
+          ("Co-applicant Income", "Spouse/co-borrower income ($)", "fi-cyan"),
+          ("Loan Amount", "Requested loan in thousands", "fi-green"),
+          ("Loan Term", "Repayment period in months", "fi-blue"),
+          ("Credit History", "Strongest single predictor", "fi-purple"),
+          ("Property Area", "Urban / Semiurban / Rural", "fi-cyan"),
+        ] %}
+        {% for name, desc, cls in features %}
+        <div style="display:flex;align-items:flex-start;gap:.75rem;padding:.85rem;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--radius-sm)">
+          <div class="feature-icon {{ cls }}" style="width:36px;height:36px;font-size:.85rem;flex-shrink:0;border-radius:6px">✓</div>
+          <div>
+            <div style="font-size:.88rem;font-weight:600;margin-bottom:.15rem">{{ name }}</div>
+            <div style="font-size:.78rem;color:var(--text-muted)">{{ desc }}</div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- ── Development timeline ───────────────────────────── -->
+    <div class="glass-card reveal" style="padding:2rem 2.5rem;margin-bottom:1.5rem">
+      <h2 style="font-size:1.3rem;margin-bottom:1.5rem">📅 Development Timeline</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">Phase 1</div>
+          <h4>Data Collection &amp; EDA</h4>
+          <p>Sourced and cleaned loan dataset; performed exploratory analysis on approval patterns, income distributions, and feature correlations.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Phase 2</div>
+          <h4>Model Development</h4>
+          <p>Trained Gradient Boosting Classifier with hyperparameter tuning. Compared against Logistic Regression, Random Forest, and SVM baselines.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Phase 3</div>
+          <h4>Flask API &amp; Backend</h4>
+          <p>Built RESTful prediction API with pickle model loading, feature encoding, and probability calibration.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Phase 4</div>
+          <h4>Frontend Design</h4>
+          <p>Designed premium dark glassmorphism UI with animated counters, interactive charts, and fully responsive layout.</p>
+        </div>
+        <div class="timeline-item" style="padding-bottom:0">
+          <div class="timeline-date">Phase 5</div>
+          <h4>Deployment &amp; Documentation</h4>
+          <p>Production-ready configuration, requirements.txt, README, and portfolio documentation.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── API reference ──────────────────────────────────── -->
+    <div class="glass-card reveal" style="padding:2rem 2.5rem;margin-bottom:1.5rem">
+      <h2 style="font-size:1.3rem;margin-bottom:1.5rem">🔌 REST API Reference</h2>
+      <div style="display:grid;gap:1rem">
+        {% set endpoints = [
+          ("POST", "/api/predict", "Submit applicant data; returns prediction with probability, risk, confidence, recommendation"),
+          ("GET",  "/api/analytics", "Returns Plotly chart data and KPI stats from the training dataset"),
+          ("GET",  "/api/history", "Returns the last 20 predictions made in this session"),
+        ] %}
+        {% for method, path, desc in endpoints %}
+        <div style="display:flex;gap:1rem;align-items:flex-start;padding:1rem;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--radius-sm)">
+          <span class="badge {{ 'badge-blue' if method=='GET' else 'badge-green' }}" style="flex-shrink:0;font-size:.75rem">{{ method }}</span>
+          <div>
+            <code style="color:var(--cyan);font-size:.88rem">{{ path }}</code>
+            <p style="color:var(--text-secondary);font-size:.82rem;margin-top:.25rem">{{ desc }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- ── CTA ────────────────────────────────────────────── -->
+    <div class="glass-card reveal" style="padding:2.5rem;text-align:center;background:linear-gradient(135deg,rgba(79,142,247,0.08),rgba(168,85,247,0.08))">
+      <h2 style="font-size:1.5rem;margin-bottom:.75rem">
+        Try the <span class="gradient-text">Prediction Engine</span>
+      </h2>
+      <p style="color:var(--text-secondary);margin-bottom:1.75rem">
+        Submit your details and get an AI-powered loan decision in under a second.
+      </p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="/predict" class="btn-primary btn-lg">🔮 Try Prediction</a>
+        <a href="/dashboard" class="btn-secondary btn-lg">📊 View Dashboard</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="toast-container"></div>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
