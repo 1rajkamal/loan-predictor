@@ -98,7 +98,7 @@ if (predictForm) {
       if (valEl) {
         const prefix = range.dataset.prefix || "";
         const suffix = range.dataset.suffix || "";
-        valEl.textContent = prefix + Number(range.value).toLocaleString() + suffix;
+        valEl.textContent = prefix + Number(range.value).toLocaleString('en-IN') + suffix;
       }
     };
     range.addEventListener("input", update);
@@ -255,29 +255,58 @@ function downloadReport() {
 }
 window.downloadReport = downloadReport;
 
-/* ── Prediction history table ────────────────────────────── */
+//* ── Prediction history table ────────────────────────────── */
 async function loadHistory() {
   const tbody = document.getElementById("historyBody");
   if (!tbody) return;
+
   try {
     const res = await fetch("/api/history");
     const json = await res.json();
+
     if (!json.success) return;
+
     tbody.innerHTML = json.history.map(h => `
       <tr>
         <td>#${h.id}</td>
         <td>${h.timestamp}</td>
-        <td>$${Number(h.applicant_income).toLocaleString()}</td>
-        <td>$${Number(h.loan_amount).toLocaleString()}K</td>
+        <td>₹${Number(h.applicant_income).toLocaleString('en-IN')}</td>
+        <td>₹${Number(h.loan_amount).toLocaleString('en-IN')}</td>
         <td>${h.credit_history}</td>
-        <td><span class="badge ${h.approved?'badge-green':'badge-red'}">${h.approved?'Approved':'Rejected'}</span></td>
-        <td>${h.probability}%</td>
-        <td><span class="badge ${h.risk_level==='Low'?'badge-green':h.risk_level==='Medium'?'badge-yellow':'badge-red'}">${h.risk_level}</span></td>
-      </tr>`).join("") || `<tr><td colspan="8" style="text-align:center;color:var(--text-muted)">No predictions yet</td></tr>`;
-  } catch {}
-}
-loadHistory();
 
+        <td>
+          <span class="badge ${h.approved ? 'badge-green' : 'badge-red'}">
+            ${h.approved ? 'Approved' : 'Rejected'}
+          </span>
+        </td>
+
+        <td>${h.probability}%</td>
+
+        <td>
+          <span class="badge ${
+            h.risk_level === 'Low'
+              ? 'badge-green'
+              : h.risk_level === 'Medium'
+              ? 'badge-yellow'
+              : 'badge-red'
+          }">
+            ${h.risk_level}
+          </span>
+        </td>
+      </tr>
+    `).join("") || `
+      <tr>
+        <td colspan="8" style="text-align:center;color:var(--text-muted)">
+          No predictions yet
+        </td>
+      </tr>
+    `;
+  } catch (err) {
+    console.error("History Error:", err);
+  }
+}
+
+loadHistory();
 /* ── Analytics dashboard ─────────────────────────────────── */
 async function loadAnalytics() {
   if (!document.getElementById("chartDonut")) return;
