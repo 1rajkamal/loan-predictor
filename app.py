@@ -168,7 +168,7 @@ def api_analytics():
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
             font_color="#e2e8f0",
-            xaxis=dict(gridcolor="rgba(255,255,255,0.08)", title="Applicant Income ($)"),
+            xaxis=dict(gridcolor="rgba(255,255,255,0.08)", title="Applicant Income (₹)"),
             yaxis=dict(gridcolor="rgba(255,255,255,0.08)", title="Count"),
             margin=dict(t=20, b=40, l=40, r=20),
             legend=dict(orientation="h", yanchor="bottom", y=-0.25),
